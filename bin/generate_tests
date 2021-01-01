@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "bundler"
+Bundler.require
+require "pathname"
+
+dir = Pathname.new(__dir__).join("..").join("spec")
+
+100.times do |i|
+  dir.join("#{i}_spec.rb").write(<<~RUBY)
+    RSpec.describe "#{i}" do
+      it do
+        sleep #{i} / 100.0
+
+        expect(#{i}).to eq #{i}
+      end
+    end
+  RUBY
+end
