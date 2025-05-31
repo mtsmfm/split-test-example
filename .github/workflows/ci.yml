@@ -10,7 +10,8 @@ jobs:
       - uses: dawidd6/action-download-artifact@v9
         with:
           branch: main
-          name: test-report-*
+          name: test-report-.*
+          name_is_regexp: true
           workflow: ci.yml
           path: report
           merge_multiple: true
